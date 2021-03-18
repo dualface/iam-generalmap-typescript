@@ -9,3 +9,4 @@ export * from "./lib/MapLayer";
 export * from "./lib/MapLayers";
 export * from "./lib/MapPosition";
 export * from "./lib/MapSize";
+export { content } from "./lib/__private";
