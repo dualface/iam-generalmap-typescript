@@ -1,0 +1,21 @@
+{
+    "name": "iam-generalmap",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {},
+    "keywords": [
+        "ecs",
+        "game",
+        "framework"
+    ],
+    "author": "liaoyulei",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dualface/iam-generalmap.git"
+    },
+    "homepage": "https://github.com/dualface/iam-generalmap",
+    "license": "Apache-2.0"
+}
