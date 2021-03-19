@@ -68,6 +68,7 @@ export class MapCell {
      * @param content 内容
      */
     add(content: MapContentInterface): void {
+        content.position = this.position.clone();
         this.contents.push(content);
     }
 

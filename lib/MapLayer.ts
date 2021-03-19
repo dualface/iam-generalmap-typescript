@@ -162,16 +162,10 @@ export class MapLayer {
      * 移动内容到指定位置的单元格
      *
      * @param content
-     * @param from
      * @param to
      */
-    moveContent(
-        content: MapContentInterface,
-        from: MapPosition,
-        to: MapPosition
-    ): void {
-        this.get(from).delete(content);
+    moveContent(content: MapContentInterface, to: MapPosition): void {
+        this.get(content.position).delete(content);
         this.get(to).add(content);
-        content.position = to.clone();
     }
 }
