@@ -172,5 +172,6 @@ export class MapLayer {
     ): void {
         this.get(from).delete(content);
         this.get(to).add(content);
+        content.position = to.clone();
     }
 }
