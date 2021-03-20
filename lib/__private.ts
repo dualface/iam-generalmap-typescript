@@ -1,9 +1,9 @@
 export type Constructor<T = unknown> = new (...args: any[]) => T;
 
-export function content(type: string) {
+export function content(name: string) {
     return (ctor: Function) => {
-        Object.defineProperty(ctor, "type", {
-            value: type,
+        Object.defineProperty(ctor, "name", {
+            value: name,
             writable: false,
         });
     };
