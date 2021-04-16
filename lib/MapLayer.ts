@@ -13,7 +13,7 @@ export class MapLayer {
     /**
      * 网格
      */
-    private grid: Array<Array<MapCell>> = [];
+    readonly cells: Array<MapCell> = [];
 
     /**
      * 构造函数
@@ -22,13 +22,13 @@ export class MapLayer {
      * @param size
      */
     constructor(readonly name: string, readonly size: MapSize) {
-        this.size = size;
+        this.cells.length = size.rows * size.cols;
+        let i = 0;
         for (let row = 0; row < size.rows; row++) {
-            const cells: Array<MapCell> = [];
             for (let col = 0; col < size.cols; col++) {
-                cells.push(new MapCell(col, row));
+                this.cells[i] = new MapCell(col, row);
+                i++;
             }
-            this.grid.push(cells);
         }
     }
 
@@ -76,7 +76,7 @@ export class MapLayer {
                 `MapLayer.getCell(): position <${col},${row}> out range of map grid`
             );
         }
-        return this.grid[row][col];
+        return this.cells[row * this.size.cols + col];
     }
 
     /**
@@ -133,10 +133,8 @@ export class MapLayer {
      * 清理地图
      */
     cleanup(): void {
-        for (let row = 0; row < this.size.rows; row++) {
-            for (let col = 0; col < this.size.cols; col++) {
-                this.grid[row][col].cleanup();
-            }
+        for (const cell of this.cells) {
+            cell.cleanup();
         }
     }
 
@@ -149,11 +147,8 @@ export class MapLayer {
         constructor: Constructor<T>
     ): T[] {
         const contents: T[] = [];
-        for (let row = 0; row < this.size.rows; row++) {
-            for (let col = 0; col < this.size.cols; col++) {
-                const cell = this.grid[row][col];
-                cell.findByType(constructor, contents);
-            }
+        for (const cell of this.cells) {
+            cell.findByType(constructor, contents);
         }
         return contents;
     }
